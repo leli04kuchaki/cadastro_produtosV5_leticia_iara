@@ -85,7 +85,11 @@ function carregarDoLocalStorage() {
         } catch (erro) {
             listaDeProdutos.length = 0;
             localStorage.removeItem(CHAVE_STORAGE);
-            exibirMensagem("Não foi possível carregar os produtos salvos.", "erro");
+
+            exibirMensagem(
+                "Não foi possível carregar os produtos salvos.",
+                "erro"
+            );
         }
     }
 }
@@ -96,7 +100,6 @@ function carregarDoLocalStorage() {
 
 function exibirMensagem(texto, tipo = "erro") {
     mensagemErro.textContent = texto;
-
     mensagemErro.className = "mensagem-inline " + tipo;
     mensagemErro.style.display = "block";
 }
@@ -187,7 +190,6 @@ btnConfirmarModal.addEventListener("click", function () {
     }
 });
 
-// Fechar modal clicando fora da janela
 modalConfirmacao.addEventListener("click", function (event) {
     if (event.target === modalConfirmacao) {
         fecharModal();
@@ -205,21 +207,18 @@ formProduto.addEventListener("submit", function (event) {
     const preco = parseFloat(document.getElementById("preco").value);
     const quantidade = Number(document.getElementById("quantidade").value);
 
-    // Validação do nome
     if (!nome) {
         exibirMensagem("Por favor, informe o nome do produto.");
         document.getElementById("nome").focus();
         return;
     }
 
-    // Validação do preço
     if (isNaN(preco) || preco <= 0) {
         exibirMensagem("O preço deve ser maior que zero.");
         document.getElementById("preco").focus();
         return;
     }
 
-    // Validação da quantidade
     if (!Number.isInteger(quantidade) || quantidade <= 0) {
         exibirMensagem("A quantidade deve ser um número inteiro maior que zero.");
         document.getElementById("quantidade").focus();
@@ -250,6 +249,8 @@ formProduto.addEventListener("submit", function (event) {
 
     formProduto.reset();
 
+    caixaSugestoes.style.display = "none";
+
     atualizarInterface();
 });
 
@@ -266,9 +267,13 @@ campoBusca.addEventListener("input", function () {
 //
 
 function removerProduto(index) {
+    const produto = listaDeProdutos[index];
+
+    if (!produto) return;
+
     abrirModal(
         "Excluir produto",
-        `Tem certeza que deseja remover "${listaDeProdutos[index].nome}"?`,
+        `Tem certeza que deseja remover "${produto.nome}"?`,
         function () {
             listaDeProdutos.splice(index, 1);
 
@@ -460,10 +465,133 @@ modalBootstrap.addEventListener("click", function (event) {
 });
 
 //
-// Fechar modais com a tecla ESC
+// FASE 17: Sugestões automáticas de produtos
+//
+
+const campoNome = document.getElementById("nome");
+const caixaSugestoes = document.getElementById("sugestoes-produtos");
+
+const produtosSugeridos = [
+    "Abacaxi", "Abajur", "Açúcar", "Agenda", "Água",
+    "Arroz", "Avental",
+
+    "Bala", "Banana", "Batata", "Bicicleta", "Bola",
+    "Bolacha", "Borracha", "Brinquedo", "Batom", "Bateria",
+
+    "Caderno", "Cadeira", "Camiseta", "Caneta", "Celular",
+    "Chocolate", "Computador", "Copo", "Colher", "Calçado",
+
+    "Dado", "Desodorante", "Detergente", "Doce", "Dicionário",
+
+    "Escova", "Espelho", "Estojo", "Esponja", "Envelope",
+
+    "Farinha", "Feijão", "Fone de ouvido", "Fogão", "Frango",
+
+    "Garrafa", "Geladeira", "Giz", "Guarda-chuva", "Geleia",
+
+    "Hambúrguer", "Hidratante", "Hortelã",
+
+    "Impressora", "Iogurte", "Isqueiro", "Inseticida",
+
+    "Janela", "Jogo", "Joia", "Jaqueta",
+
+    "Kiwi", "Kit escolar",
+
+    "Lápis", "Leite", "Livro", "Luva", "Luminária",
+
+    "Maçã", "Mochila", "Mouse", "Mesa", "Microfone",
+    "Monitor", "Macarrão", "Meia",
+
+    "Notebook", "Navalha", "Nescau", "Nécessaire",
+
+    "Óculos", "Óleo", "Organizador",
+
+    "Panela", "Papel", "Pão", "Pente", "Perfume",
+    "Prato", "Pincel", "Pilha",
+
+    "Queijo", "Quadro", "Quaderno",
+
+    "Régua", "Relógio", "Rádio", "Roupas",
+
+    "Sabonete", "Sapato", "Teclado", "Telefone",
+    "Televisão", "Toalha", "Tênis",
+
+    "Uva", "Uniforme", "Utensílios",
+
+    "Vassoura", "Ventilador", "Vidro", "Violão",
+
+    "Xícara", "Xampu", "Xarope",
+
+    "Zíper", "Zabumba"
+];
+
+// Mostrar sugestões conforme a digitação
+campoNome.addEventListener("input", function () {
+
+    const texto = campoNome.value.trim().toLowerCase();
+
+    caixaSugestoes.innerHTML = "";
+
+    if (texto.length === 0) {
+        caixaSugestoes.style.display = "none";
+        return;
+    }
+
+    const resultados = produtosSugeridos.filter((produto) => {
+        return produto.toLowerCase().startsWith(texto);
+    });
+
+    if (resultados.length === 0) {
+        caixaSugestoes.style.display = "none";
+        return;
+    }
+
+    resultados.forEach((produto) => {
+
+        const item = document.createElement("div");
+
+        item.className = "sugestao-item";
+        item.textContent = produto;
+
+        item.addEventListener("click", function () {
+
+            campoNome.value = produto;
+
+            caixaSugestoes.style.display = "none";
+
+            campoNome.focus();
+        });
+
+        caixaSugestoes.appendChild(item);
+    });
+
+    caixaSugestoes.style.display = "block";
+});
+
+// Esconder sugestões ao clicar fora
+document.addEventListener("click", function (event) {
+
+    if (
+        !campoNome.contains(event.target) &&
+        !caixaSugestoes.contains(event.target)
+    ) {
+        caixaSugestoes.style.display = "none";
+    }
+});
+
+// Fechar sugestões ao pressionar ESC
+campoNome.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        caixaSugestoes.style.display = "none";
+    }
+});
+
+//
+// FASE 18: Fechar modais com ESC
 //
 
 document.addEventListener("keydown", function (event) {
+
     if (event.key === "Escape") {
         fecharModal();
         fecharModalBootstrap();
@@ -471,7 +599,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 //
-// FASE 17: Inicialização
+// FASE 19: Inicialização
 //
 
 btnCancelarEdicao.style.display = "none";

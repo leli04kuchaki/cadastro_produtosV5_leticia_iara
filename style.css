@@ -96,6 +96,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 7px;
+    position: relative;
 }
 
 label {
@@ -120,6 +121,38 @@ input:focus {
     border-color: #9333ea;
     background-color: #ffffff;
     box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.12);
+}
+
+/* ==============================
+   SUGESTÕES DE PRODUTOS
+============================== */
+
+.sugestoes-produtos {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 180px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid #d8b4fe;
+    border-radius: 12px;
+    margin-top: 5px;
+    box-shadow: 0 5px 15px rgba(126, 87, 194, 0.15);
+    z-index: 100;
+}
+
+.sugestao-item {
+    padding: 11px 14px;
+    cursor: pointer;
+    color: #6b21a8;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sugestao-item:hover {
+    background-color: #f3e8ff;
 }
 
 /* ==============================
@@ -408,7 +441,7 @@ tbody tr:hover {
     margin-bottom: 15px;
 }
 
-/* Ícone de confirmação */
+/* Ícone do modal */
 
 .modal-icone {
     display: flex;
