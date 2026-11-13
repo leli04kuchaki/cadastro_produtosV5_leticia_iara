@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque - POO & CRUD V5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Imagem do sistema -->
+        <img src="img.iaralet.png" alt="Imagem do sistema" class="imagem-topo">
+
+        <h1>Cadastro de Produtos</h1>
+
+        <!-- Botão de conceito Bootstrap -->
+        <div class="bootstrap-container">
+            <button type="button" id="btn-bootstrap" class="btn-bootstrap">
+                Ver Conceito Bootstrap
+            </button>
+        </div>
+
+        <!-- Formulário -->
+        <form id="produto-form" novalidate>
+
+            <div class="form-group">
+                <label for="nome">Nome do produto:</label>
+                <input type="text" id="nome" placeholder="Ex. Notebook">
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço (R$):</label>
+                <input type="number" id="preco" step="0.01" min="0" placeholder="Ex. 3500.00">
+            </div>
+
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" min="1" step="1" placeholder="Ex. 5">
+            </div>
+
+            <!-- Mensagens Inline -->
+            <div id="mensagem-erro" class="mensagem-inline" role="alert" aria-live="polite"></div>
+
+            <button type="submit" class="btn-primary">
+                Adicionar Produto
+            </button>
+
+            <button type="button" id="btn-cancelar-edicao" class="btn-cancelar-edicao">
+                Cancelar Edição
+            </button>
+        </form>
+
+        <!-- Resumo do estoque -->
+        <div class="resumo-container">
+            <h3 id="total-estoque">Total em Estoque: R$ 0,00</h3>
+
+            <button type="button" id="limpar-tabela" class="btn-danger">
+                Limpar Tudo
+            </button>
+        </div>
+
+        <!-- Pesquisa -->
+        <div class="busca-container">
+            <label for="campo-busca">Pesquisar produto:</label>
+            <input
+                type="text"
+                id="campo-busca"
+                placeholder="Digite o nome do produto..."
+            >
+        </div>
+
+        <!-- Tabela -->
+        <div class="tabela-container">
+            <table id="tabela-produtos">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Preço Un.</th>
+                        <th>Qtd.</th>
+                        <th>Subtotal</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Linhas inseridas pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div id="modal-confirmacao" class="modal-overlay" aria-hidden="true">
+        <div class="modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+            <div class="modal-icone">!</div>
+
+            <h2 id="modal-titulo">Confirmar ação</h2>
+
+            <p id="modal-mensagem">
+                Tem certeza de que deseja continuar?
+            </p>
+
+            <div class="modal-botoes">
+                <button type="button" id="btn-cancelar-modal" class="btn-modal-cancelar">
+                    Cancelar
+                </button>
+
+                <button type="button" id="btn-confirmar-modal" class="btn-modal-confirmar">
+                    Confirmar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal do conceito Bootstrap -->
+    <div id="modal-bootstrap" class="modal-overlay" aria-hidden="true">
+        <div class="modal-conteudo modal-bootstrap-conteudo" role="dialog" aria-modal="true" aria-labelledby="bootstrap-titulo">
+
+            <div class="bootstrap-icone">B</div>
+
+            <h2 id="bootstrap-titulo">Conceito Bootstrap</h2>
+
+            <p>
+                Bootstrap é um framework front-end utilizado para facilitar
+                a criação de interfaces de sites e sistemas.
+            </p>
+
+            <p>
+                Ele oferece componentes prontos, como botões, formulários,
+                tabelas, alertas e janelas modais, além de recursos para
+                deixar as páginas responsivas.
+            </p>
+
+            <p>
+                <strong>Aplicação no nosso projeto:</strong> Poderíamos
+                utilizar o Bootstrap para desenvolver os botões, organizar
+                o formulário, estilizar a tabela e criar os modais de
+                confirmação de maneira mais rápida e padronizada.
+            </p>
+
+            <p>
+                Nesta versão, os componentes foram desenvolvidos com
+                HTML, CSS e JavaScript personalizados, seguindo os
+                conceitos de interface apresentados pelo Bootstrap.
+            </p>
+
+            <button type="button" id="btn-fechar-bootstrap" class="btn-bootstrap-fechar">
+                Entendi!
+            </button>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #f3e8ff, #fdf4ff, #ede9fe);
+    color: #3b3150;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ==============================
+   CONTAINER PRINCIPAL
+============================== */
+
+.container {
+    max-width: 750px;
+    background-color: #ffffff;
+    margin: 35px auto;
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(126, 87, 194, 0.15);
+    border: 1px solid #e9d5ff;
+}
+
+/* ==============================
+   IMAGEM DO TOPO
+============================== */
+
+.imagem-topo {
+    display: block;
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border-radius: 35px;
+    border: 3px solid #e9d5ff;
+    box-shadow: 0 5px 18px rgba(126, 87, 194, 0.18);
+}
+
+/* ==============================
+   TÍTULO
+============================== */
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #7e22ce;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* ==============================
+   BOTÃO BOOTSTRAP
+============================== */
+
+.bootstrap-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.btn-bootstrap {
+    background: linear-gradient(135deg, #9333ea, #6b21a8);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(126, 34, 206, 0.2);
+}
+
+.btn-bootstrap:hover {
+    background: linear-gradient(135deg, #7e22ce, #581c87);
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   FORMULÁRIO
+============================== */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #6b21a8;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d8b4fe;
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: #faf5ff;
+    color: #3b3150;
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #9333ea;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.12);
+}
+
+/* ==============================
+   MENSAGENS INLINE
+============================== */
+
+.mensagem-inline {
+    display: none;
+    padding: 13px 15px;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -5px;
+}
+
+.mensagem-inline.erro {
+    display: block;
+    color: #b91c1c;
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.mensagem-inline.sucesso {
+    display: block;
+    color: #15803d;
+    background-color: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+
+/* ==============================
+   BOTÕES GERAIS
+============================== */
+
+button {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Botão adicionar */
+
+.btn-primary {
+    background: linear-gradient(135deg, #a855f7, #7e22ce);
+    color: white;
+    box-shadow: 0 4px 10px rgba(126, 34, 206, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #9333ea, #6b21a8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(126, 34, 206, 0.25);
+}
+
+/* Botão salvar edição */
+
+.btn-warning {
+    background: linear-gradient(135deg, #c084fc, #9333ea) !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background: #7e22ce !important;
+}
+
+/* Botão cancelar edição */
+
+.btn-cancelar-edicao {
+    display: none;
+    background-color: #f3e8ff;
+    color: #7e22ce;
+    border: 1px solid #d8b4fe;
+}
+
+.btn-cancelar-edicao:hover {
+    background-color: #e9d5ff;
+}
+
+/* Botão limpar tudo */
+
+.btn-danger {
+    background-color: #f3d4f4;
+    color: #9333a8;
+    border: 1px solid #e9b8ec;
+}
+
+.btn-danger:hover {
+    background-color: #e9b8ec;
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   RESUMO DO ESTOQUE
+============================== */
+
+.resumo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 18px;
+    background-color: #faf5ff;
+    border: 1px solid #e9d5ff;
+    border-radius: 15px;
+}
+
+#total-estoque {
+    font-size: 18px;
+    color: #7e22ce;
+    font-weight: 700;
+}
+
+/* ==============================
+   CAMPO DE PESQUISA
+============================== */
+
+.busca-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+#campo-busca {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d8b4fe;
+    border-radius: 14px;
+    background-color: #faf5ff;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+#campo-busca:focus {
+    outline: none;
+    border-color: #9333ea;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.12);
+}
+
+/* ==============================
+   TABELA DE PRODUTOS
+============================== */
+
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid #e9d5ff;
+}
+
+th {
+    background: linear-gradient(135deg, #a855f7, #7e22ce);
+    color: white;
+    padding: 14px 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+td {
+    border-bottom: 1px solid #f0e5fa;
+    padding: 13px 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+tbody tr {
+    background-color: #ffffff;
+    transition: 0.2s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #faf5ff;
+}
+
+tbody tr:hover {
+    background-color: #f3e8ff;
+}
+
+/* ==============================
+   BOTÃO EDITAR
+============================== */
+
+.btn-editar {
+    background-color: #e9d5ff;
+    color: #7e22ce;
+    padding: 8px 11px;
+    font-size: 12px;
+    border-radius: 9px;
+    margin: 3px;
+}
+
+.btn-editar:hover {
+    background-color: #d8b4fe;
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   BOTÃO REMOVER
+============================== */
+
+.btn-remover {
+    background-color: #fce7f3;
+    color: #be185d;
+    padding: 8px 11px;
+    font-size: 12px;
+    border-radius: 9px;
+    margin: 3px;
+}
+
+.btn-remover:hover {
+    background-color: #fbcfe8;
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   MENSAGEM SEM RESULTADOS
+============================== */
+
+.mensagem-vazia {
+    text-align: center;
+    padding: 25px;
+    color: #9333a8;
+    font-style: italic;
+    background-color: #faf5ff;
+    border-radius: 10px;
+}
+
+/* ==============================
+   MODAIS PERSONALIZADOS
+============================== */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(35, 20, 50, 0.55);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal-overlay.ativo {
+    display: flex;
+    animation: aparecer 0.25s ease;
+}
+
+.modal-conteudo {
+    width: 100%;
+    max-width: 430px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(50, 20, 70, 0.25);
+    border: 1px solid #e9d5ff;
+    animation: subir 0.3s ease;
+}
+
+.modal-conteudo h2 {
+    color: #7e22ce;
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.modal-conteudo p {
+    color: #6b5b7a;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Ícone de confirmação */
+
+.modal-icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background-color: #fce7f3;
+    color: #be185d;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Botões do modal */
+
+.modal-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-modal-cancelar {
+    background-color: #f3e8ff;
+    color: #7e22ce;
+    border: 1px solid #d8b4fe;
+}
+
+.btn-modal-cancelar:hover {
+    background-color: #e9d5ff;
+}
+
+.btn-modal-confirmar {
+    background: linear-gradient(135deg, #e879a9, #be185d);
+    color: white;
+}
+
+.btn-modal-confirmar:hover {
+    background: linear-gradient(135deg, #db2777, #9d174d);
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   MODAL BOOTSTRAP
+============================== */
+
+.modal-bootstrap-conteudo {
+    max-width: 500px;
+}
+
+.bootstrap-icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #a855f7, #7e22ce);
+    color: white;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.btn-bootstrap-fechar {
+    width: 100%;
+    margin-top: 12px;
+    background: linear-gradient(135deg, #a855f7, #7e22ce);
+    color: white;
+}
+
+.btn-bootstrap-fechar:hover {
+    background: linear-gradient(135deg, #9333ea, #6b21a8);
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   ANIMAÇÕES
+============================== */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 18px;
+        margin: 15px auto;
+        border-radius: 17px;
+    }
+
+    .imagem-topo {
+        width: 110px;
+        height: 110px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .resumo-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #total-estoque {
+        font-size: 16px;
+    }
+
+    table {
+        min-width: 540px;
+    }
+
+    th, td {
+        padding: 7px 3px;
+        font-size: 11px;
+    }
+
+    .btn-editar,
+    .btn-remover {
+        padding: 6px;
+        font-size: 10px;
+        margin: 2px;
+    }
+
+    .modal-conteudo {
+        padding: 23px 18px;
+    }
+
+    .modal-conteudo h2 {
+        font-size: 20px;
+    }
+
+    .modal-botoes {
+        flex-direction: column-reverse;
+    }
+
+    .modal-botoes button {
+        width: 100%;
+    }
+
+    .bootstrap-container button {
+        width: 100%;
+    }
+}
